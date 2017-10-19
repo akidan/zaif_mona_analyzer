@@ -3,8 +3,6 @@ import sys
 import time
 import requests
 import bs4
-print ("============================")
-print("   " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
 list = ['ask', 'bid']
 for mona in list:
@@ -24,7 +22,7 @@ for mona in list:
                 'mona_avg_jpy'   : float(tds[5].contents[0].strip())
             })
     locals()[mona+"_row"] = len(locals()[mona+"_list"])
-    print("   " + mona.capitalize() + " " + str(locals()[mona+"_list"][0]['mona_jpy']))
+    
     
 # mona_jpy        : '売値(JPY)'
 # mona_amount     : '数量(MONA)'
@@ -38,9 +36,6 @@ for mona in list:
 # sum(mona_amountxjpy) == ask_list[-1]['mona_all_jpy']
 # mona_avg_jpy[row]    == mona_all_amount[row] / mona_all_jpy[row]
 
-ask_bid_rate=(round(ask_list[0]['mona_jpy']/bid_list[0]['mona_jpy'],4)-1)*100
-bgcolor = "41m" if ask_bid_rate > 5 else "42m";
-print ('\x1b[6;30;' + bgcolor + "A/B " + str(ask_bid_rate) + "%" + '\x1b[0m')
 print ("============================")
 
 ask_list_sorted = sorted(ask_list, key = lambda k:k['mona_amount'], reverse=True)
@@ -48,12 +43,20 @@ bid_list_sorted = sorted(bid_list, key = lambda k:k['mona_amount'], reverse=True
 suggest_sell = 1000.0;
 suggest_buy = 0.0;
 for i in range (0, 10):
-    print ("Ask amount sort " + str(ask_list_sorted[i]['mona_jpy']) + " Avg " + str("{:3.1f}".format(ask_list_sorted[i]['mona_avg_jpy'])) + " " + str(int(ask_list_sorted[i]['mona_amount'])))
-    if suggest_sell > ask_list_sorted[i]['mona_avg_jpy']: suggest_sell = ask_list_sorted[i]['mona_avg_jpy']
+    print ("Ask amount sort " + str(ask_list_sorted[i]['mona_jpy']) + " " + str(int(ask_list_sorted[i]['mona_amount'])))
+    if suggest_sell > ask_list_sorted[i]['mona_avg_jpy']: suggest_sell = ask_list_sorted[i]['mona_jpy']
 print("")
 for i in range (0, 10):
-    print ("Bid amount sort " + str(bid_list_sorted[i]['mona_jpy']) + " Avg " + str("{:3.1f}".format(bid_list_sorted[i]['mona_avg_jpy'])) + " " + str(int(bid_list_sorted[i]['mona_amount'])))
-    if suggest_buy < bid_list_sorted[i]['mona_avg_jpy']: suggest_buy = bid_list_sorted[i]['mona_avg_jpy']
+    print ("Bid amount sort " + str(bid_list_sorted[i]['mona_jpy']) + " " + str(int(bid_list_sorted[i]['mona_amount'])))
+    if suggest_buy < bid_list_sorted[i]['mona_avg_jpy']: suggest_buy = bid_list_sorted[i]['mona_jpy']
+print ("============================")
+
+print ("   " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+print ("   " + "Ask " + str(ask_list[0]['mona_jpy']))
+print ("   " + "Bid " + str(bid_list[0]['mona_jpy']))
+ask_bid_rate=(round(ask_list[0]['mona_jpy']/bid_list[0]['mona_jpy'],4)-1)*100
+bgcolor = "41m" if ask_bid_rate > 5 else "42m";
+print ('\x1b[6;30;' + bgcolor + "A/B " + str(ask_bid_rate) + "%" + '\x1b[0m')
 print ("============================")
 
 color = 31; #red
