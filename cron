@@ -1,0 +1,2 @@
+* * * * * sleep 2; python ~/Workspaces/zaif_mona_analyzer/mona.py | grep "   " | tr -d '\n' | sed 's/   //' | sed 's/   /,/g' | sed 's/ /,/g' >> ~/Workspaces/mona_data.csv
+* * * * * sleep 2; python ~/Workspaces/zaif_mona_analyzer/mona.py > ~/Workspaces/mona_data_lastest.txt
