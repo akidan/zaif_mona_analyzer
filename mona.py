@@ -4,7 +4,7 @@ import time
 import requests
 import bs4
 print ("============================")
-print("  " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+print("   " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
 list = ['ask', 'bid']
 for mona in list:
@@ -24,7 +24,7 @@ for mona in list:
                 'mona_avg_jpy'   : float(tds[5].contents[0].strip())
             })
     locals()[mona+"_row"] = len(locals()[mona+"_list"])
-    print("  " + mona.capitalize() + " " + str(locals()[mona+"_list"][0]['mona_jpy']))
+    print("   " + mona.capitalize() + " " + str(locals()[mona+"_list"][0]['mona_jpy']))
     
 # mona_jpy        : '売値(JPY)'
 # mona_amount     : '数量(MONA)'
@@ -70,7 +70,7 @@ print ("Ask amount " + str(ask_list[-1]['mona_all_amount']))
 print ("Bid amount " + str(bid_list[-1]['mona_all_amount']))
 print ("============================")
 
-print ("  " + "Suggestion " + '\033[1;' + str(color+adjust_color) + ';40m' + suggest + str(abs(round(amount_diff/divide,4)*100)) + "%" + '\033[0m');
+print ("   " + "Suggestion " + '\033[1;' + str(color+adjust_color) + ';40m ' + suggest + str(abs(round(amount_diff/divide,4)*100)) + "%" + ' \033[0m');
 print ("  " + '\x1b[6;30;42mSuggest sell at\x1b[0m ' + str("{:3.1f}".format(float(suggest_sell)-0.1)))
 print ("  " + '\x1b[6;30;42mSuggest buy  at\x1b[0m ' + str("{:3.1f}".format(float(suggest_buy)+0.1)))
 print ("  " + '\x1b[6;30;42mSuggest stop at\x1b[0m ' + str("{:3.1f}".format(float(ask_list[0]['mona_jpy'])*1.1)))
