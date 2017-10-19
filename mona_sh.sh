@@ -1,7 +1,7 @@
 #!/bin/bash
 while : 
 do
-  cat ~/life/mona_data_latest.txt
+  cat ~/Workspaces/mona_data_latest.txt
   i=60
   while [ $i -gt 0 ] 
   do
