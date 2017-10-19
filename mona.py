@@ -44,11 +44,11 @@ suggest_sell = 1000.0;
 suggest_buy = 0.0;
 for i in range (0, 10):
     print ("Ask amount sort " + str(ask_list_sorted[i]['mona_jpy']) + " " + str(int(ask_list_sorted[i]['mona_amount'])))
-    if suggest_sell > ask_list_sorted[i]['mona_avg_jpy']: suggest_sell = ask_list_sorted[i]['mona_jpy']
+    if suggest_sell > ask_list_sorted[i]['mona_jpy']: suggest_sell = ask_list_sorted[i]['mona_jpy']
 print("")
 for i in range (0, 10):
     print ("Bid amount sort " + str(bid_list_sorted[i]['mona_jpy']) + " " + str(int(bid_list_sorted[i]['mona_amount'])))
-    if suggest_buy < bid_list_sorted[i]['mona_avg_jpy']: suggest_buy = bid_list_sorted[i]['mona_jpy']
+    if suggest_buy < bid_list_sorted[i]['mona_jpy']: suggest_buy = bid_list_sorted[i]['mona_jpy']
 print ("============================")
 
 print ("   " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
